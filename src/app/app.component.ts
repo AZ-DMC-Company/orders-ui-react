@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { Order } from './order.model';
+import { OrderService } from './order.service';
 
 @Component({
   selector: 'app-root',
@@ -9,11 +9,9 @@ import { Order } from './order.model';
 export class AppComponent implements OnInit {
   orders: Order[] = [];
 
-  constructor(private http: HttpClient) {}
+  constructor(private orderService: OrderService) {}
 
-  ngOnInit(): void {
-    // URL del backend Container App cuando despliegues
-    this.http.get<Order[]>('http://localhost:8080/orders')
-      .subscribe(data => this.orders = data);
+  ngOnInit() {
+    this.orders = this.orderService.getOrders();
   }
 }
