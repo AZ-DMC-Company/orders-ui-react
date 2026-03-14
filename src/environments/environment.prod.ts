@@ -1,4 +1,5 @@
+// src/environments/environment.ts
 export const environment = {
-  production: true,
-  apiUrl: 'https://mi-backend-api.azurewebsites.net/api'
+  production: false,
+  backendUrl: 'https://orders-backend-dev-01.gentleglacier-13b71ce3.eastus.azurecontainerapps.io/orders'
 };

@@ -1,0 +1,28 @@
+/* Estilos básicos para la lista de órdenes */
+ul {
+  list-style-type: none;  /* quitar viñetas */
+  padding: 0;
+}
+
+li {
+  padding: 8px 12px;
+  margin: 4px 0;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background-color: #f9f9f9;
+  font-family: Arial, sans-serif;
+}
+
+li:nth-child(even) {
+  background-color: #f1f1f1; /* filas alternas */
+}
+
+.loading {
+  font-style: italic;
+  color: gray;
+}
+
+.error {
+  color: red;
+  font-weight: bold;
+}
