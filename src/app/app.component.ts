@@ -12,6 +12,7 @@ export class AppComponent implements OnInit {
   constructor(private http: HttpClient) {}
 
   ngOnInit(): void {
+    // URL del backend Container App cuando despliegues
     this.http.get<Order[]>('http://localhost:8080/orders')
       .subscribe(data => this.orders = data);
   }
