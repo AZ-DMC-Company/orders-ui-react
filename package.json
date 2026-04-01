@@ -1,33 +1,36 @@
 {
-  "name": "orders-frontend",
-  "version": "0.0.1",
+  "name": "bodegafront",
+  "version": "0.0.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build orders-frontend --configuration production",
-    "test": "ng test",
-    "lint": "ng lint",
-    "e2e": "ng e2e"
+    "build": "ng build",
+    "watch": "ng build --watch --configuration development",
+    "test": "ng test"
   },
   "private": true,
+  "packageManager": "npm@10.9.3",
   "dependencies": {
-    "@angular/animations": "^15.2.6",
-    "@angular/common": "^15.2.6",
-    "@angular/compiler": "^15.2.6",
-    "@angular/core": "^15.2.6",
-    "@angular/forms": "^15.2.6",
-    "@angular/platform-browser": "^15.2.6",
-    "@angular/platform-browser-dynamic": "^15.2.6",
-    "@angular/router": "^15.2.6",
-    "rxjs": "^7.8.0",
-    "tslib": "^2.6.0",
-    "zone.js": "~0.13.0"
+    "@angular/cdk": "^21.2.3",
+    "@angular/common": "^21.2.0",
+    "@angular/compiler": "^21.2.0",
+    "@angular/core": "^21.2.0",
+    "@angular/forms": "^21.2.0",
+    "@angular/material": "^21.2.3",
+    "@angular/platform-browser": "^21.2.0",
+    "@angular/router": "^21.2.0",
+    "@auth0/angular-jwt": "^5.2.0",
+    "rxjs": "~7.8.0",
+    "tslib": "^2.3.0",
+    "zone.js": "^0.16.1"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "^15.2.6",
-    "@angular/cli": "^15.2.6",
-    "@angular/compiler-cli": "^15.2.6",
-    "@types/node": "^18.16.3",
-    "typescript": "~4.9.5"
+    "@angular/build": "^21.2.3",
+    "@angular/cli": "^21.2.3",
+    "@angular/compiler-cli": "^21.2.0",
+    "jsdom": "^28.0.0",
+    "prettier": "^3.8.1",
+    "typescript": "~5.9.2",
+    "vitest": "^4.0.8"
   }
 }

@@ -1,6 +1,6 @@
 export const environment = {
-    RETRY: 3,
+    RETRY: 5,
     TOKEN_NAME: 'access_token',
     USER_ID: 'user_id',
-    production: true,
+    production: false,
 };

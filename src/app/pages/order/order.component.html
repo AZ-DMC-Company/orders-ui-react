@@ -1,0 +1,31 @@
+<router-outlet></router-outlet>
+<div>
+    <h1>PEDIDOS</h1>
+    @for (order of orders(); track order.idOrder) {
+    <mat-card class="order-card" appearance="outlined">
+        <mat-card-header class="card-header-flex">
+            <mat-card-title-group>
+                <mat-card-title>Pedido #{{'00000' + order.idOrder | slice: -5}}</mat-card-title>
+                <mat-card-subtitle>
+                    Date: {{order.createdAt | date:'short'}}
+                </mat-card-subtitle>
+            </mat-card-title-group>
+            <div class="actions-group">
+                <button mat-icon-button class="btnEdit" color="primary" matTooltip="Editar" (click)="openDialog(order)">
+                    <mat-icon>edit</mat-icon>
+                </button>
+                <button mat-icon-button class="btnDelete" color="warn" matTooltip="Eliminar" (click)="eliminar(order.idOrder)">
+                    <mat-icon>delete</mat-icon>
+                </button>
+            </div>
+        </mat-card-header>
+    </mat-card>
+    } @empty {
+        <p>Cargando orders...</p>
+    }
+
+</div>
+<!--floating action button en la parte inferior de la pantalla-->
+<button mat-fab color="primary" class="fab" (click)="openDialog()">
+    <mat-icon>add</mat-icon>
+</button>

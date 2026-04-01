@@ -1,0 +1,29 @@
+.fab {
+  background-color: teal !important;
+  color: white;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1000;
+}
+
+.card-header-flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.actions-group {
+  display: flex;
+  gap: 8px;
+}
+
+.btnEdit {
+  background-color: #007bff;
+  color: white;
+}
+
+.btnDelete {
+  background-color: #dc3545;
+  color: white;
+}

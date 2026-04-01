@@ -1,0 +1,7 @@
+@if (loadingState() === 'loading') {
+  <p>Cargando...</p>
+} @else if (loadingState() === 'error') {
+  <p role="alert">{{ errorMessage() }}</p>
+} @else {
+  <h2>Bienvenido {{ user()?.firstName }} {{ user()?.lastName }}</h2>
+}

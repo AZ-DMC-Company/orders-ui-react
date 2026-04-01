@@ -1,26 +1,25 @@
-# Stage 1: Build
-FROM node:18-alpine AS build
+# syntax=docker/dockerfile:1
+
+# --- Etapa 1: compilar la SPA ---
+FROM node:22-bookworm-slim AS build
+
 WORKDIR /app
 
-# Copiar package.json primero para cache de dependencias
-COPY package*.json ./
-RUN npm install --legacy-peer-deps
+COPY package.json package-lock.json ./
+RUN npm ci
 
-# Copiar resto del proyecto
 COPY . .
 RUN npm run build
 
-# Stage 2: Serve with Nginx
-FROM nginx:alpine
+# --- Etapa 2: servir estáticos ---
+FROM nginx:alpine AS runtime
 
-# Copiar build de Angular
-COPY --from=build /app/dist/orders-frontend /usr/share/nginx/html
+COPY docker/nginx.conf /etc/nginx/nginx.conf
+COPY --from=build /app/dist/bodegafront/browser /usr/share/nginx/html
+COPY src/assets/config.json /usr/share/nginx/html/assets/config.json
+COPY entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
 
-# Copiar template de variables de entorno
-COPY src/assets/env.template.js /usr/share/nginx/html/assets/env.template.js
+EXPOSE 8080
 
-# Exponer puerto
-EXPOSE 80
-
-# Generar env.js dinámico y arrancar Nginx
-CMD sh -c "envsubst < /usr/share/nginx/html/assets/env.template.js > /usr/share/nginx/html/assets/env.js && nginx -g 'daemon off;'"
+ENTRYPOINT ["/entrypoint.sh"]

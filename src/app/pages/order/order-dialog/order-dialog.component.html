@@ -1,0 +1,76 @@
+<mat-dialog-content>
+    <mat-toolbar>
+        <span>Detalle Pedido</span>
+    </mat-toolbar>
+    <div class="dialog-container">
+        <form class="form-container" [formGroup]="form" (submit)="operate()">
+            <mat-form-field>
+                <input matInput placeholder="orderId" formControlName="orderId" readonly>
+            </mat-form-field>
+            
+            <!--Campo oculto pero seteado desde el .ts-->
+            <mat-form-field style="display: none;">
+                <input matInput placeholder="userId" formControlName="userId">
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>Cliente</mat-label>
+                <mat-select formControlName="clientId">
+                    @for (client of clients; track client.idClient) {
+                    <mat-option [value]="client.idClient">{{client.name}}</mat-option>
+                    }
+                </mat-select>
+            </mat-form-field>
+
+            <h3 class="products-heading">Productos</h3>
+            <div class="products-table-wrap">
+                <table mat-table [dataSource]="productRows" class="products-table mat-elevation-z1">
+                    <ng-container matColumnDef="select">
+                        <th mat-header-cell *matHeaderCellDef></th>
+                        <td mat-cell *matCellDef="let row">
+                            <mat-checkbox
+                                [checked]="row.selected"
+                                (change)="row.selected = $event.checked"
+                            ></mat-checkbox>
+                        </td>
+                    </ng-container>
+                    <ng-container matColumnDef="idProducto">
+                        <th mat-header-cell *matHeaderCellDef>idProducto</th>
+                        <td mat-cell *matCellDef="let row">{{ row.idProducto }}</td>
+                    </ng-container>
+                    <ng-container matColumnDef="productoName">
+                        <th mat-header-cell *matHeaderCellDef>productoName</th>
+                        <td mat-cell *matCellDef="let row">{{ row.productoName }}</td>
+                    </ng-container>
+                    <ng-container matColumnDef="cantidad">
+                        <th mat-header-cell *matHeaderCellDef>cantidad</th>
+                        <td mat-cell *matCellDef="let row">
+                            <input
+                                class="qty-input"
+                                matInput
+                                type="number"
+                                min="1"
+                                [value]="row.cantidad"
+                                (input)="onCantidadChange(row, $event)"
+                            />
+                        </td>
+                    </ng-container>
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+                </table>
+            </div>
+
+            <br>
+        
+            <button mat-flat-button class="submit-button" type="submit">
+                <span>OK</span>
+                <mat-icon>done</mat-icon>
+            </button>
+        
+            <button mat-flat-button class="cancel-button" type="button" (click)="close()">
+                <span>Cancel</span>
+                <mat-icon>close</mat-icon>
+            </button>
+        </form>
+    </div>
+</mat-dialog-content>

@@ -1,0 +1,17 @@
+<div>
+    @for (product of products(); track product.idProduct) {
+    <mat-card class="product-card" appearance="outlined">
+        <mat-card-header>
+            <mat-card-title-group>
+                <mat-card-title>{{product.name}}</mat-card-title>
+                <mat-card-subtitle>
+                    Código: {{'00000' + product.idProduct | slice: -5}}
+                </mat-card-subtitle>
+                <img mat-card-sm-image src="/images/product.jpg">
+            </mat-card-title-group>
+        </mat-card-header>
+    </mat-card>
+    } @empty {
+        <p>Cargando productos...</p>
+    }
+</div>
