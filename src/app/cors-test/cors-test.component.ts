@@ -1,6 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { JsonPipe } from '@angular/common'; // <-- importar JsonPipe
+import { ConfigService } from './config.service';
 
 @Component({
   selector: 'app-cors-test',
@@ -14,12 +15,15 @@ import { JsonPipe } from '@angular/common'; // <-- importar JsonPipe
 })
 export class CorsTestComponent {
   private http = inject(HttpClient);
+  private configService = inject(ConfigService);
   result: any;
 
   testCors() {
     const body = { username: 'rvera', password: '12345678' };
+    const url = `${this.configService.apiUrl}/login`;
+
     this.http.post(
-      'https://orders-backend-dev-01.yellowmeadow-33984d9c.westus2.azurecontainerapps.io/login',
+      url,
       body,
       { observe: 'response' }
     ).subscribe({
