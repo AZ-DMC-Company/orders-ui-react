@@ -17,7 +17,7 @@ export class CorsTestComponent {
   result: any;
 
   testCors() {
-    const body = { username: 'testuser', password: 'testpass' };
+    const body = { username: 'rvera', password: '12345678' };
     this.http.post(
       'https://orders-backend-dev-01.yellowmeadow-33984d9c.westus2.azurecontainerapps.io/login',
       body,
